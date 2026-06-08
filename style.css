@@ -192,7 +192,8 @@ body::before {
         #00d4ff,
         #8b5cf6
     );
-    -webkitbackground-clip:text;
+    -webkit-background-clip:text;
+    background-clip:text;
     -webkit-text-fill-color:transparent;
     font-size:1.8rem;
     font-weight:900;
@@ -247,23 +248,26 @@ body::before {
     letter-spacing: 0.5px;
 }
 
+/* 🛠️ FIXED GLITCH: ARN.init() TEXT MASK PROTECTED FROM BOXING EFFECT */
 .hero .arn-logo{
     font-size:6.5rem; 
     font-weight:900;
     letter-spacing:6px;
     margin:5px 0 5px 0;
     display: inline-block;
-    width: 100%;
+    width: auto; /* Width auto handles absolute typography footprint bounds */
     background:linear-gradient(
         135deg,
         #00d4ff,
         #3b82f6,
         #8b5cf6
     );
-    -webkitbackground-clip:text;
+    -webkit-background-clip:text;
+    background-clip:text;
     -webkit-text-fill-color:transparent;
-    text-shadow:0 0 30px rgba(0,212,255,.25);
-    position:relative;
+    color: transparent;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3)); /* Glow protection rule */
+    position: relative;
     animation:glowPulse 4s ease-in-out infinite;
 }
 
@@ -477,6 +481,26 @@ body::before {
     border-radius:10px;
     font-weight:600;
     font-size: 0.9rem;
+}
+
+/* 🛠️ TWO BUTTONS SYMMETRY FIX FOR CODE + DEPLOYED LINKS */
+.project-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.project-btn.live-btn {
+    background: transparent !important;
+    border: 1px solid #00bfff;
+    color: #00bfff;
+    transition: 0.3s ease;
+}
+
+.project-btn.live-btn:hover {
+    background: #00bfff !important;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
 }
 
 /* Contact Module Configurations */
